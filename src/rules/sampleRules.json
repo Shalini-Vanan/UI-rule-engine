@@ -1,0 +1,71 @@
+[
+  {
+    "name": "Show contractDuration if Contract selected",
+    "conditions": {
+      "all": [
+        {
+          "fact": "employmentType",
+          "operator": "equal",
+          "value": "Contract"
+        }
+      ]
+    },
+    "event": {
+      "type": "SHOW_FIELD",
+      "params": { "fieldId": "contractDuration" }
+    }
+  },
+  {
+    "name": "Hide officeLocation if remote",
+    "conditions": {
+      "all": [
+        {
+          "fact": "isRemote",
+          "operator": "equal",
+          "value": true
+        }
+      ]
+    },
+    "event": {
+      "type": "HIDE_FIELD",
+      "params": { "fieldId": "officeLocation" }
+    }
+  },
+  {
+    "name": "Disable salary if Freelance",
+    "conditions": {
+      "all": [
+        {
+          "fact": "employmentType",
+          "operator": "equal",
+          "value": "Freelance"
+        }
+      ]
+    },
+    "event": {
+      "type": "DISABLE_FIELD",
+      "params": { "fieldId": "salary" }
+    }
+  },
+  {
+    "name": "Make officeLocation mandatory if not remote",
+    "conditions": {
+      "all": [
+        {
+          "fact": "isRemote",
+          "operator": "equal",
+          "value": false
+        },
+        {
+          "fact": "companyName",
+          "operator": "notEqual",
+          "value": ""
+        }
+      ]
+    },
+    "event": {
+      "type": "MAKE_MANDATORY",
+      "params": { "fieldId": "officeLocation" }
+    }
+  }
+]
